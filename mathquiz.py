@@ -51,22 +51,15 @@ def LoadGame():
 
 
 def SaveGame():
-    if not userExists:
-        f = open(name + ".txt", "w")
-        f.write(name + '\n')
-        f.write(str(score) + '\n')
-        f.write(str(attempts) + '\n')
-        f.write(str(correctAnswers) + '\n')
-        f.close()
-    else:
+    if userExists:
         os.remove(name + ".txt")
-        f = open(name + ".txt", "w")
-        f.write(name + '\n')
-        f.write(str(score) + '\n')
-        f.write(str(attempts) + '\n')
-        f.write(str(correctAnswers) + '\n')
-        f.close()
-        f.close()
+
+    f = open(name + ".txt", "w")
+    f.write(name + '\n')
+    f.write(str(score) + '\n')
+    f.write(str(attempts) + '\n')
+    f.write(str(correctAnswers) + '\n')
+    f.close()
 
 
 def main():
@@ -98,6 +91,7 @@ def main():
             print("Wrong! -1 \nScore: " + str(score))
             if score < 0:
                 score = 0
+
         if keyboard.is_pressed('q'):
             print("Bye " + name + "!")
             SaveGame()
